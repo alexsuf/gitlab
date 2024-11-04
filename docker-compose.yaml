@@ -1,0 +1,25 @@
+services:
+  gitlab:
+    image: alexsuf/gitlab
+    container_name: gitlab
+    restart: always
+    hostname: 'gitlab.local'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.local'
+      GITLAB_ROOT_PASSWORD: 'Fanatic123!'
+      GITLAB_ROOT_EMAIL: 'aleksey.zadonsky@gmail.com'
+      TZ: Europe/Moscow
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - ./gitlab-config:/etc/gitlab
+      - gitlab-logs:/var/log/gitlab
+      - gitlab-data:/var/opt/gitlab
+volumes:
+  gitlab-logs:
+    external: true
+  gitlab-data:
+    external: true
