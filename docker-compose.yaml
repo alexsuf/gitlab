@@ -18,6 +18,18 @@ services:
       - ./gitlab-config:/etc/gitlab
       - gitlab-logs:/var/log/gitlab
       - gitlab-data:/var/opt/gitlab
+
+  gitlab-runner:
+    image: alexsuf/gitlab-runner
+    container_name: gitlab-runner
+    restart: always
+    volumes:
+      - ./gitlab-runner/config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - RUNNER_NAME=gitlab-runner
+      - RUNNER_EXECUTOR=docker
+
 volumes:
   gitlab-logs:
     external: true

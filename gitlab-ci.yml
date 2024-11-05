@@ -1,0 +1,11 @@
+run_tests:
+  script:
+    - echo "Running tests..."
+
+build_image:
+  script:
+    - echo "Building docker image..."
+    - echo "Giving the name of the image..."
+
+push_image:
+  script:
